@@ -1,4 +1,5 @@
 
-#
-# class Pokedox:
-#     def __init__(self):
+
+class Pokedex:
+    def __init__(self):
+        self.entries = {}

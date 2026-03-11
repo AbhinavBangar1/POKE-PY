@@ -1,9 +1,10 @@
 
 
 class PokeBall:
+
     def __init__(self , ball_type):
         self.ball_type = ball_type
-        self.catch_rate = None
+        self.catch_rate = 0.1
 
     def get_catch_rate(self):
         return self.catch_rate
@@ -15,9 +16,17 @@ class PokeBall:
         return self.ball_type
 
     def catch(self , pokemon_health):
-        if (pokemon_health):# Some logic that will avoid it catching the pokemon without fight
+        if pokemon_health:# Some logic that will avoid it catching the pokemon without fight
             return False
         return False
+
+    def craft_pokeball(apricorn = None):
+        ball_map = {
+            'white_apricorn': 'GreatBall'
+        }
+        ball = ball_map[apricorn]
+        if ball == 'GreatBall':
+            GreatBall()
 
 
 
@@ -30,3 +39,12 @@ class GreatBall (PokeBall) :
 class UltraBall (PokeBall) :
     def __init__(self):
         super().__init__("Ultra Ball")
+        self.set_catch_rate(0.7)
+
+class MasterBall(PokeBall) :
+    def __inti__(self):
+        super().__init__("Master Ball")
+        self.set_catch_rate(0.9)
+
+
+
