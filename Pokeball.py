@@ -1,4 +1,4 @@
-
+import random
 
 class PokeBall:
 
@@ -15,10 +15,15 @@ class PokeBall:
     def get_ball_type(self):
         return self.ball_type
 
-    def catch(self , pokemon_health):
-        if pokemon_health:# Some logic that will avoid it catching the pokemon without fight
+    def catch(self, pokemon):
+        health_factor = 1 - (pokemon.health / pokemon.max_health)
+        final_chance = self.catch_rate + 0.5 * health_factor
+        roll = random.random()
+        if roll <= final_chance:
+            return True
+        else:
+            print(f"Oh no! {pokemon.name} broke free.")
             return False
-        return False
 
     def craft_pokeball(apricorn = None):
         ball_map = {
@@ -42,7 +47,7 @@ class UltraBall (PokeBall) :
         self.set_catch_rate(0.7)
 
 class MasterBall(PokeBall) :
-    def __inti__(self):
+    def __init__(self):
         super().__init__("Master Ball")
         self.set_catch_rate(0.9)
 

@@ -1,48 +1,39 @@
-import keyboard
+
 from Pokedex import Pokedex
+from Pokeball import PokeBall
 
 class Trainer :
     def __init__(self, name, experience, city , coordinates ):
-        self.experience = experience
+        self.__experience = experience
         self.name = name
-        self.badges  = []
-        self.pokemons  = []
-        self.city = city
+        self.__badges  = []
+        self.__pokemons  = [] ## list of pokemon object
+        self.__city = city
         self.coordinates = coordinates
-        self.backpack = []
-        self.pokeball = 3
-        self.backpack_capacity = 10
+        self.__backpack = []
+        self.__pokeballs = {}
+        self.__backpack_capacity = 10
         self.pokedex = Pokedex()
 
+    def catch_pokemon(self , pokeball , pokemon): ## assuming the check if pokeball exists will be done in pygame interface
+        self.__pokeballs[pokeball] -= 1
+        if pokeball.catch() :
+            self.__pokemons.append(pokemon)
+
+
     def upgrade_back_capacity(self):
-        self.backpack_capacity += 1
+        self.__backpack_capacity += 1
 
     def added_to_backpack(self, item):
-        if len(self.backpack) > self.backpack_capacity:
-            self.backpack.append(item)
+        if len(self.__backpack) > self.__backpack_capacity:
+            self.__backpack.append(item)
             return True
         else :
             return False
 
     def removed_from_backpack(self , item):
-        if len(self.backpack) > 0 :
-            self.backpack.remove(item)
+        if len(self.__backpack) > 0 :
+            self.__backpack.remove(item)
             return True
         else :
             return False
-
-    def move(self):
-        key = keyboard.read_key()
-        if key == "w" :
-            self.coordinates[1] += 1
-        if key == "a":
-            self.coordinates[0] -= 1
-        if key == "s":
-            self.coordinates[1] -= 1
-        if key == "d":
-            self.coordinates[0] += 1
-
-
-
-
-
