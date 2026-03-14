@@ -8,6 +8,14 @@ class Move :
         self.accuracy = accuracy
         self.stamina_cost = stamina_cost
 
+    def get_move_stats(self):
+        stats = dict()
+        stats["damage"] = self.damage
+        stats["move_type"] = self.move_type
+        stats["accuracy"] = self.accuracy
+        stats["stamina_cost"] = self.stamina_cost
+        return stats
+
     def use(self, pokemon1 , pokemon2):
         if pokemon1.stamina >= self.stamina_cost :
             if self.check_hit() :
@@ -17,9 +25,7 @@ class Move :
     def check_hit(self):
         return random.randint(1, 100) <= self.accuracy
 
-class SpecialMove(Move) :
-    def __init__(self):
-        super().__init__()
+
 
 
 

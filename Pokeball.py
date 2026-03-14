@@ -22,17 +22,21 @@ class PokeBall:
         if roll <= final_chance:
             return True
         else:
-            print(f"Oh no! {pokemon.name} broke free.")
             return False
 
-    def craft_pokeball(apricorn = None):
+    def craft_pokeball(self ,apricorn = None):
         ball_map = {
-            'white_apricorn': 'GreatBall'
+            'white_apricorn': 'GreatBall',
+            'black_apricorn': 'UltraBall' ,
+            'purple_apricorn': 'MasterBall'
         }
         ball = ball_map[apricorn]
         if ball == 'GreatBall':
             GreatBall()
-
+        elif ball == 'UltraBall':
+            UltraBall()
+        elif ball == 'MasterBall':
+            MasterBall()
 
 
 class GreatBall (PokeBall) :
@@ -53,3 +57,4 @@ class MasterBall(PokeBall) :
 
 
 
+## completed

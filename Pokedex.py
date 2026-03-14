@@ -17,6 +17,6 @@ class Pokedex:
         if pokemon in self.__entries:
             self.__entries[pokemon][2] = 1 # player catch the pokemon
         else :
-            addPoketoDex(pokemon)
+            self.addPoketoDex(pokemon)
 
     ## Completed

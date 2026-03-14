@@ -1,18 +1,28 @@
 
 
 class Pokemon :
-    def __init__(self, health , stamina , speed , max_health ,element_type = None ,name = None):
+    def __init__(self, health , stamina , speed , max_health = None ,element_type = None ,name = None):
         self.__nickname = None
         self.name = name
         self.__element_type = element_type
         self.__health = health
-        self.max_health = max_health
+        self.__max_health = max_health
         self.__level = 1
         self.__speed = speed
         self.__stamina = stamina
         self.__experience = 0
         self.__moves = []
+        self.__is_available = True
         self.__rarity = "common"
+
+    @property
+    def is_available(self):
+        return self.__is_available
+
+    @is_available.setter
+    def is_available(self, value):
+        self.__is_available = value
+
 
     @property
     def health(self):
@@ -27,6 +37,10 @@ class Pokemon :
 
     def has_fainted(self):
         return self.health <= 0
+
+    @property
+    def max_health(self):
+        return self.__max_health
 
     @property
     def element_type(self):
@@ -104,7 +118,7 @@ class Rare(Pokemon) :
 class Epic(Pokemon) :
     def __init__(self):
         super().__init__(health= 140 , stamina= 40 , speed = 7)
-        rarity = "Epic"
+
 
 class Legendary(Pokemon) :
     def __init__(self):
