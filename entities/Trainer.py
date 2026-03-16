@@ -6,8 +6,8 @@ from PokeCenter import PokeCenter
 
 
 class Trainer :
-    def __init__(self, name, experience, city , coordinates ):
-        self.__experience = experience
+    def __init__(self, name, city , coordinates ):
+        self.__experience = 0
         self.name = name
         self.__badges  = []
         self.__pokemons  = [] ## list of pokemon object
@@ -63,7 +63,7 @@ class Trainer :
         self.__backpack_capacity += 1
 
     def added_to_backpack(self, item):
-        if len(self.__backpack) > self.__backpack_capacity:
+        if len(self.__backpack) < self.__backpack_capacity:
             self.__backpack.append(item)
             return True
         else :
@@ -79,7 +79,7 @@ class Trainer :
     def get_nearest_centre(self):
         t_x , t_y = self.coordinates[0] , self.coordinates[1]
         mindist = float('inf')
-        for pokecenter in PokeCenter.PokemonCenters:
+        for pokecenter in PokeCenter.PokemonCenters.values():
             p_x , p_y = pokecenter.coordinates[0] , pokecenter.coordinates[1]
             dist = math.sqrt( (p_x - t_x)**2 + (p_y - t_y)**2 )
             if dist < mindist :
