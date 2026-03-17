@@ -14,7 +14,7 @@ class Trainer :
         self.__city = city
         self.coordinates = coordinates
         self.__backpack = []
-        self.__pokeballs = {}
+        self.__pokeballs = {} ## Dictionary of pokeball object
         self.__backpack_capacity = 10
         self.pokedex = Pokedex()
 
@@ -44,6 +44,9 @@ class Trainer :
     def pokeballs(self):
         return self.__pokeballs
 
+    def add_pokeball(self, pokeball):
+        self.__pokeballs[pokeball]+= 1
+
     @property
     def backpack(self):
         return self.__backpack
@@ -58,6 +61,8 @@ class Trainer :
         self.__pokeballs[pokeball] -= 1
         if pokeball.catch() :
             self.__pokemons.append(pokemon)
+            return True
+        return False
 
     def upgrade_back_capacity(self):
         self.__backpack_capacity += 1
