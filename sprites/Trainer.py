@@ -7,8 +7,8 @@ class TrainerSprite(pygame.sprite.Sprite):
     def __init__(self, x, y, sheet_path, json_path):
         super().__init__()
 
-        # load spritesheet
-        self.sheet = pygame.image.load(sheet_path).convert_alpha()
+        self.sheet = pygame.image.load(sheet_path).convert()  # ← convert() not convert_alpha()
+        self.sheet.set_colorkey((255, 255, 255))
 
         # load json data
         with open(json_path) as f:
@@ -24,10 +24,10 @@ class TrainerSprite(pygame.sprite.Sprite):
         }
 
         # state
-        self.direction = "down"
+        self.direction = "up"
         self.current_frame = 0
         self.animation_timer = 0
-        self.animation_speed = 10  # change frame every 10 game ticks
+        self.animation_speed = 3 # change frame every 10 game ticks
 
         # position
         self.x = x
@@ -48,19 +48,19 @@ class TrainerSprite(pygame.sprite.Sprite):
     def update(self, keys):
         moving = False
 
-        if keys[pygame.K_w]:
+        if keys[pygame.K_w] or keys[pygame.K_UP]:
             self.y -= self.speed
             self.direction = "up"
             moving = True
-        if keys[pygame.K_s]:
+        if keys[pygame.K_s] or keys[pygame.K_DOWN]:
             self.y += self.speed
             self.direction = "down"
             moving = True
-        if keys[pygame.K_a]:
+        if keys[pygame.K_a] or keys[pygame.K_LEFT]:
             self.x -= self.speed
             self.direction = "left"
             moving = True
-        if keys[pygame.K_d]:
+        if keys[pygame.K_d] or keys[pygame.K_RIGHT]:
             self.x += self.speed
             self.direction = "right"
             moving = True
